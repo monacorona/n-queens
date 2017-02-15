@@ -79,6 +79,11 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
+      //"get" "this" row index and assign it to variable
+      //assign a variable to row length
+      //assign a count variable and set it to 0
+      //for every row, have count increment by 1
+      //return count if its greater than 1 
       return false; // fixme
     },
 
@@ -94,6 +99,11 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      //"get" "this" column index and assign it to variable
+      //assign a variable to column length
+      //assign a count variable and set it to 0
+      //for every column, have cont increment by 1
+      //return count if its greater than 1
       return false; // fixme
     },
 
