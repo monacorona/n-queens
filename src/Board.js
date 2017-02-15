@@ -116,17 +116,32 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      //"get" "this" column index and assign it to variable
-      //assign a variable to column length
       //assign a count variable and set it to 0
-      //for every column, have cont increment by 1
-      //return count if its greater than 1
+      var piecesInColumn = 0;
+      for (var i = 0; i < this.attributes.n; i++) {
+        //for every column, have cont increment by 1
+        var row = this.get(i);
+        if (row[colIndex] === 1) {
+          piecesInColumn++;
+          // return count if its greater than 1
+          if (piecesInColumn > 1) {
+            return true;
+          }
+        }
+      }
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      // iterate through columns
+      for (var i = 0; i < this.attributes.n; i++) {
+        // check if each column has a conflict and return boolean
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
