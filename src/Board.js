@@ -80,16 +80,33 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       //"get" "this" row index and assign it to variable
-      //assign a variable to row length
+      var row = this.get(rowIndex);
       //assign a count variable and set it to 0
-      //for every row, have count increment by 1
-      //return count if its greater than 1 
+      var piecesInRow = 0;
+      for (var i = 0; i < row.length; i++) {
+        // if coordinate has a piece in it
+        if (row[i] === 1) {
+          piecesInRow++;
+          if (piecesInRow > 1) {
+            return true;
+          }
+        }
+        //return count if its greater than 1 
+      }
+
       return false; // fixme
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      // iterate through rows
+      for (var i = 0; i < this.attributes.n; i++) {
+        // check if each row has a conflict and return boolean
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
