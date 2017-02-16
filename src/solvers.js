@@ -69,16 +69,62 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  var solution = undefined; //fixme
+  var solution = [];
+  var board = new Board({n: n});
+  // create helper function findSolution
+  var findSolution = function (piecesPlaced) {
+    // board gets row index to iterate through
+    var row = board.get(piecesPlaced);
+    for (var i = 0; i < row.length; i++) {
+      // once peice is placed
+      board.togglePiece(piecesPlaced, i);
+      piecesPlaced++;
+      // assign row into solution at respective row index
 
+      // once pieces are all placed, return solution
+    }
+  };
+    
+  findSolution(0);
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var solutionCount = 0;
+  
+  var board = new Board({n: n});
 
+  var findSolutions = function findSolutions(piecesPlaced) {
+    var row = board.get(piecesPlaced);
+    // iterate through the row
+    row.forEach(function(_, index) {
+      // place a piece
+      board.togglePiece(piecesPlaced, index);
+      // increase our count of the pieces placed
+      piecesPlaced++;
+      // if conflict
+      if (board.hasAnyQueensConflicts()) {
+        // decrease our count of pieces placed and remove the piece
+        board.togglePiece(--piecesPlaced, index);
+      // if no conflict
+      } else {
+        // if all pieces have been placed
+        if (piecesPlaced === n) {
+          // increase the solution count by one
+          solutionCount++;
+        } else {
+          // else we recurse on next row 
+          findSolutions(piecesPlaced);
+        }
+        // decrease the count of pieces placed and remove the piece
+        board.togglePiece(--piecesPlaced, index);
+      }
+    });
+  };
+
+  findSolutions(0);
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
