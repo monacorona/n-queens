@@ -34,20 +34,24 @@ window.countNRooksSolutions = function(n) {
   
   var board = new Board({n: n});
 
-  var placePiece = function placePiece(number) {
+  var findSolutions = function findSolutions(piecesPlaced) {
     var row = board.get(number);
     // iterate through the row
-      // place a piece and increment number
+    //forEach (index) {}
+      // place a piece and increment piecesPlaced
       // check for conflict
-      // if conflict remove the piece and decrement number
+      // if conflict remove
+        // remove the piece
+        // decrement placedPlace
       // if no conflict
         // if number equals n
           // increment solutionCount
-          // remove the piece
-          // decrement number
-          // recurse on one row up
-        // recurse on next row
+        // else we recurse on next row 
+        // remove the piece
+        // decrement number
   };
+
+  findSolutions(0);
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
