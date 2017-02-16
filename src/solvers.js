@@ -35,20 +35,31 @@ window.countNRooksSolutions = function(n) {
   var board = new Board({n: n});
 
   var findSolutions = function findSolutions(piecesPlaced) {
-    var row = board.get(number);
+    var row = board.get(piecesPlaced);
     // iterate through the row
-    //forEach (index) {}
-      // place a piece and increment piecesPlaced
-      // check for conflict
-      // if conflict remove
-        // remove the piece
-        // decrement placedPlace
+    row.forEach(function(_, index) {
+      // place a piece
+      board.togglePiece(piecesPlaced, index);
+      // increase our count of the pieces placed
+      piecesPlaced++;
+      // if conflict
+      if (board.hasAnyRooksConflicts()) {
+        // decrease our count of pieces placed and remove the piece
+        board.togglePiece(--piecesPlaced, index);
       // if no conflict
-        // if number equals n
-          // increment solutionCount
-        // else we recurse on next row 
-        // remove the piece
-        // decrement number
+      } else {
+        // if all pieces have been placed
+        if (piecesPlaced === n) {
+          // increase the solution count by one
+          solutionCount++;
+        } else {
+          // else we recurse on next row 
+          findSolutions(piecesPlaced);
+        }
+        // decrease the count of pieces placed and remove the piece
+        board.togglePiece(--piecesPlaced, index);
+      }
+    });
   };
 
   findSolutions(0);
