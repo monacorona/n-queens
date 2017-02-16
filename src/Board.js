@@ -151,12 +151,37 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //declare piecesInDiagonal
+      var piecesInDiagonal = 0;
+      // make a for loop which iterates through the rows
+      for (var i = 0; i < this.attributes.n; i++) {
+        var row = this.get(i);
+        var columnIndex = majorDiagonalColumnIndexAtFirstRow + i;
+        // check each item in the diagonal and see if it has a piece
+        if (row[columnIndex] === 1) {
+          // count each piece
+          piecesInDiagonal++;
+          // return true if more than one piece is found
+          if (piecesInDiagonal > 1) {
+            return true;
+          }
+        }
+      }
+      // return false if one or less
+      return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      for (var i = 0; i < this.attributes.n; i++) {
+        var row = this.get(i);
+        for (var j = 0; j < this.attributes.n; j++) {
+          if (this.hasMajorDiagonalConflictAt(this._getFirstRowColumnIndexForMajorDiagonalOn(i, j))) {
+            return true;
+          }
+        }
+      }
+      return false;
     },
 
 
@@ -166,12 +191,37 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //declare piecesInDiagonal
+      var piecesInDiagonal = 0;
+      // make a for loop which iterates through the rows
+      for (var i = 0; i < this.attributes.n; i++) {
+        var row = this.get(i);
+        var columnIndex = minorDiagonalColumnIndexAtFirstRow - i;
+        // check each item in the diagonal and see if it has a piece
+        if (row[columnIndex] === 1) {
+          // count each piece
+          piecesInDiagonal++;
+          // return true if more than one piece is found
+          if (piecesInDiagonal > 1) {
+            return true;
+          }
+        }
+      }
+      // return false if one or less
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      for (var i = 0; i < this.attributes.n; i++) {
+        var row = this.get(i);
+        for (var j = 0; j < this.attributes.n; j++) {
+          if (this.hasMinorDiagonalConflictAt(this._getFirstRowColumnIndexForMinorDiagonalOn(i, j))) {
+            return true;
+          }
+        }
+      }
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
