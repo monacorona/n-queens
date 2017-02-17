@@ -72,13 +72,11 @@ window.findNQueensSolution = function(n) {
   var solutionCount = 0;
 
   var board = new Board({n: n});
-  var solution = [];
+  var solution = board.rows();
   if (n === 0) {
-    return [];
+    return solution;
   }
-  for (var i = 0; i < board.attributes.n; i++) {
-    solution[i] = board.get(i);
-  }
+  
   // create helper function findSolution
   
   var findSolution = function (piecesPlaced) {
@@ -150,9 +148,7 @@ window.countNQueensSolutions = function(n) {
         if (piecesPlaced === n) {
           // increase the solution count by one
           var solution = [];
-          for (var i = 0; i < board.attributes.n; i++) {
-            solution[i] = board.get(i);
-          }
+          solution = board.rows();
           solutionCount++;
         } else {
           // else we recurse on next row 
