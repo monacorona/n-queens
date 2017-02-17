@@ -83,20 +83,13 @@ window.findNQueensSolution = function(n) {
   
   var findSolution = function (piecesPlaced) {
     // board gets row index to iterate through
-    if (solutionCount > 0) {
-      return;
-    }
     var row = board.get(piecesPlaced);
     for (var i = 0; i < row.length; i++) {
       // once peice is placed
-      if (solutionCount > 0) {
-        return;
-      }
       board.togglePiece(piecesPlaced, i);
       // assign row into solution at respective row index
       
       piecesPlaced++;
-      //solution[piecesPlaced] = row;
       // if there is a queen conflict
       if (board.hasAnyQueensConflicts()) {
         // remove piece from the board
