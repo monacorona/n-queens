@@ -84,14 +84,12 @@ window.findNQueensSolution = function(n) {
   var findSolution = function (piecesPlaced) {
     // board gets row index to iterate through
     if (solutionCount > 0) {
-      console.log(solution);
       return;
     }
     var row = board.get(piecesPlaced);
     for (var i = 0; i < row.length; i++) {
       // once peice is placed
       if (solutionCount > 0) {
-        console.log(solution);
         return;
       }
       board.togglePiece(piecesPlaced, i);
@@ -109,7 +107,6 @@ window.findNQueensSolution = function(n) {
         if (piecesPlaced === n) {
           // increment solutionCount
           for (var i = 0; i < board.attributes.n; i++) {
-            console.log(board.get(i));
             solution[i] = board.get(i);
           }
           solutionCount++;
